@@ -57,6 +57,7 @@ public class MyActivity extends ListActivity
             }
         }
 
+
         @Override
         protected void onProgressUpdate(Object... values) {
             String response = (String) values[0];
