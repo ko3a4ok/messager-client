@@ -70,9 +70,8 @@ public class Board extends Entity{
                     gl.glDisable(GL10.GL_BLEND);
                 }
                 if (previosStep != null && (previosStep.equals(i, j) || currentStep.equals(i, j))) {
-                    System.err.println("FUCK!!");
                     gl.glEnable(GL10.GL_BLEND);
-                    gl.glColor4f(1f, 0, 0, .5f);
+                    gl.glColor4f(1f, 0, 0, .2f);
                     gl.glDrawElements(GL10.GL_TRIANGLE_FAN, 4, GL10.GL_UNSIGNED_SHORT, mIndexBuffer[i*8+j]);
                     gl.glDisable(GL10.GL_BLEND);
                 }

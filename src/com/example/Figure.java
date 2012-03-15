@@ -41,8 +41,16 @@ public class Figure extends Entity{
         public int getType() {
             return type;
         }
+
+
+
     }
     private Color color;
+
+    public Color getColor() {
+        return color;
+    }
+
     private Type type;
     private FloatBuffer textureBuffer;  // buffer holding the texture coordinates
     private float texture[] = {
@@ -91,7 +99,13 @@ public class Figure extends Entity{
         bitmap.recycle();
     }
 
+    private boolean die;
+    public void die() {
+        die = true;
+    }
+
     public void draw(GL10 gl) {
+        if (die) return;
         gl.glEnable(GL10.GL_BLEND);
         gl.glBlendFunc(GL10.GL_SRC_ALPHA, GL10.GL_ONE_MINUS_SRC_ALPHA);
         gl.glEnable(GL10.GL_TEXTURE_2D);

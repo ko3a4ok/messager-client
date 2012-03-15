@@ -59,11 +59,13 @@ public class ChessboardRenderer implements GLSurfaceView.Renderer {
 
 
     private Context context;
+    private Game game;
 
     public ChessboardRenderer(Context context) {
         this.context = context;
         board = new Board();
-
+        game = new Game();
+        game.setFigures(figures);
         figures.add(new Figure(Figure.Type.ROOK, Figure.Color.WHITE, 0, 0));
         figures.add(new Figure(Figure.Type.KNIGHT, Figure.Color.WHITE, 1, 0));
         figures.add(new Figure(Figure.Type.BISHOP, Figure.Color.WHITE, 2, 0));
@@ -101,7 +103,7 @@ public class ChessboardRenderer implements GLSurfaceView.Renderer {
     public void setPosition(int x, int y) {
         boolean clickOnFreeSpace = true;
         for (Figure figure : figures) {
-            if (figure.contain(x,y)) {
+            if (figure.contain(x,y) && game.allowSelect(x, y)) {
                 clickOnFreeSpace = false;
                 selectedFigure = figure;
                 figure.setSelected(true);
@@ -118,8 +120,11 @@ public class ChessboardRenderer implements GLSurfaceView.Renderer {
     private Point previosStep;
     private Point currentStep;
     private void step(int x, int y) {
+        if (!game.allowStep(new Point(selectedFigure.x, selectedFigure.y), new Point(x,y))) return;
+
         previosStep = new Point(selectedFigure.x, selectedFigure.y);
         currentStep = new Point(x,y);
+        game.step(previosStep, currentStep);
         selectedFigure.setPosition(x, y);
         board.setStep(previosStep, currentStep);
     }
