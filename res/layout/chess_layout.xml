@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:background="#ff0"
+              android:layout_height="fill_parent">
+    <com.example.ClearGLSurfaceView
+            android:id="@+id/surface_view_id"
+            android:layout_centerInParent="true"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            />
+</RelativeLayout>
